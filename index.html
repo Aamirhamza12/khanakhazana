@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery</title>
+
+   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #f9f9f9;
+            color: #111;
+        }
+
+        
+        nav {
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .order-btn {
+            background: #f7c600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px;
+        }
+
+        .hero-left {
+            width: 50%;
+        }
+
+        .hero-left p.top-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #3b8f42;
+            margin-bottom: 10px;
+        }
+
+        .hero-left h1 {
+            font-size: 58px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-left h1 span {
+            color: #f7c600;
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+        }
+
+        .hero-left p.subtext {
+            width: 80%;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .hero-left .main-btn {
+            background: #f7c600;
+            padding: 14px 26px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 35px;
+        }
+
+        .features {
+            display: flex;
+            gap: 20px;
+        }
+
+        .features div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .features div img {
+            width:50%
+        } 
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #f7c600;
+            border-radius: 50%;
+        }
+
+        
+        .hero-right {
+            width: 45%;
+            position: relative;
+        }
+
+        .hero-right img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        
+        .rating-card {
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .customers-card {
+            position: absolute;
+            bottom: -30px;
+            left: -20px;
+            background: #f7f6f6;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .rating-card h3,
+        .customers-card h3 {
+            color: #f7c600;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+       
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-left, .hero-right {
+                width: 100%;
+            }
+            .hero-left p.subtext {
+                width: 100%;
+            }
+            .features {
+                justify-content: center;
+            }
+            .rating-card, .customers-card {
+                display: none;
+            }
+        }
+
+     
+
+.features {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 25px;
+}
+
+.feature-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.feature-img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+    </style>
+</head>
+
+<body>
+
+   
+    <nav>
+        <div class="logo">🍽 khanakhazana</div>
+
+        <ul>
+            <li>About</li>
+            <li><a href="rest.html">Din ing out</a></li>
+            <li><a href="dinin.html">Delivery</a></li>
+            
+                
+            
+        </ul>
+
+        <div class="nav-right">
+            <div class="order-btn">Order Now</div>
+            <div>🛒</div>
+            <div>Sign In</div>
+        </div>
+    </nav>
+
+
+    <section class="hero">
+
+        <div class="hero-left">
+            <p class="top-text">we speak fluent food</p>
+
+            <h1>
+                NO MATTER WHICH <br>
+                CORNER OF THE <br>
+                WORLD <span>it's from</span>
+            </h1>
+
+            <p class="subtext">
+                India = chaat to biryani, south thali to north paratha
+                Highlighting this diversity makes the line feel more “Indian”.
+            </p>
+
+            <div class="main-btn">Order Now →</div>
+
+            <div class="features">
+                <div><div class="dot"></div> Cooked to Order</div>
+                <div><div class="dot"></div> Menu Changes Weekly</div>
+                <div><div class="dot"></div> Everyday Pricing</div>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <img src="https://ik.imagekit.io/munchery/blog/tr:w-768/from-punjab-to-tamil-nadu-a-tour-of-ten-indian-thalis.jpeg">
+            <div class="rating-card">
+                <h3>4.1</h3>
+                <p>Rating</p>
+            </div>
+
+            <div class="customers-card">
+                <h3>7M+</h3>
+                <p>Happy Customers</p>
+            </div>
+        </div>
+
+    </section>
+
+<section class="features">
+    <div class="feature-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwaF6-1Auf1DuOXo9FhalxTrx1j-BnkoOu4A&s">
+        <h3>🌐 </h3>
+        <p>From Seoul to Sicily, in your weekday bowl.</p>
+    </div>
+
+    <div class="feature-card">
+        <img src="https://media.istockphoto.com/id/183321245/photo/south-indian-crepe-masala-dosa.jpg?s=612x612&w=0&k=20&c=c6Z7P5uovp2M9JVS0rlS8nCKRL73QkTYRyL7FK348Os=">
+        <p>We fire up only after you order.</p>
+    </div>
+
+    <div class="feature-card">
+        <img src="https://www.sharmispassions.com/wp-content/uploads/2015/07/19729847952_b5cc81291a_o.jpg">
+        <h3>🥗 WHOLESOME INGREDIENTS. HONEST ORIGINS.</h3>
+        
+    </div>
+
+    <div class="feature-card">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/84/8f/4d/signature-bowls-de-roots.jpg">
+        <h3>⚡ GLOBAL CUISINE. BUILT FOR BUSY.</h3>
+        <p>Busy day? Sticky commute? Our bowls are built for movement.</p>
+    </div>
+
+    <div class="feature-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQctK70K1YT8ExJPmVW5CLo6eZ8KYjnif6MUA&s">
+        <h3>💛 EVERYDAY INDULGENCE. THOUGHTFULLY PRICED.</h3>
+        
+    </div>
+
+    <div class="feature-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS-mP0w1exA2vp0GpZA6T_ZwQmmjHrbGwT5w&s">
+        <h3>📅 A NEW MENU. EVERY SINGLE WEEK.</h3>
+        <p>No reruns. Just new reasons to keep coming back.</p>
+    </div>
+</section>
