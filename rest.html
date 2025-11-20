@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EatClub — Restaurants</title>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fafafa;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0ea5a4; 
+      --accent-2:#f59e0b; 
+      --radius:12px;
+      --container:1200px;
+      --gap:28px;
+      --shadow: 0 8px 24px rgba(16,24,40,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .site {
+      max-width: var(--container);
+      margin: 26px auto;
+      padding: 20px;
+    }
+
+  
+    .nav {
+      display:flex;
+      align-items:center;
+      gap:16px;
+      justify-content:space-between;
+      padding:12px 8px;
+      background:transparent;
+    }
+    .nav-left {
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+    .logo {
+      display:flex;
+      align-items:center;
+      justify-content:justify;
+      width:56px;height:56px;border-radius:8px;
+      color:#000000;font-weight:800;font-size:18px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.08);
+    }
+    .location-select {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:#fff;border-radius:10px;padding:8px 12px;border:1px solid #e6e9ef;
+      min-width:320px;
+    }
+    .location-select .label { font-weight:700; color:#0f1724; font-size:13px; }
+    .location-select .sub { font-size:13px; color:var(--muted); margin-left:6px; }
+
+    .nav-right {
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .nav-right .link { color:var(--muted); font-weight:600; text-decoration:none; font-size:14px; }
+    .btn-app {
+      background:transparent;border:1px solid #0ea5a4;color: #0ea5a4;padding:8px 12px;border-radius:8px;font-weight:700;
+    }
+    .btn-sign {
+      background:#0ea5a4;color:#fff;padding:10px 14px;border-radius:10px;font-weight:700;border:0;
+    }
+
+    
+    .section-title {
+      margin-top:22px;
+      font-size:28px;
+      font-weight:700;
+      padding:6px 2px;
+    }
+
+   
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:var(--gap);
+      margin-top:18px;
+    }
+
+    
+    .card {
+      background:var(--card);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:transform .18s ease, box-shadow .18s ease;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      min-height:300px;
+    }
+    .card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(16,24,40,0.12); }
+
+    .card .media {
+      position:relative;
+      height:180px;
+      background:#eee;
+    }
+    .card img {
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+
+   
+    .brand-badge {
+      position:absolute;
+      right:14px;
+      bottom:-20px;
+      width:72px;height:72px;border-radius:50%;
+      background:#fff; display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 28px rgba(2,6,23,0.08); font-weight:800; font-size:13px;
+      transform:translateY(0);
+    }
+
+    .card .content {
+      padding:20px 22px 22px 22px;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .card h3 {
+      margin:0;
+      font-size:20px;
+      font-weight:700;
+      color:#0f1724;
+    }
+    .subtitle {
+      margin-top:8px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .divider {
+      height:1px;background:#eef2f6;margin:14px 0;border-radius:4px;
+    }
+
+    .offer {
+      display:flex;align-items:center;gap:10px;color:#059669;font-weight:700;font-size:14px;
+    }
+    .offer .dot {
+      width:18px;height:18px;border-radius:4px;background:#eefaf6;display:inline-flex;align-items:center;justify-content:center;color:#059669;font-weight:800;font-size:12px;
+    }
+
+   
+    
+    @media (max-width:1100px){
+      .grid { grid-template-columns:repeat(2, 1fr); gap:20px; }
+      .location-select { min-width:260px; }
+    }
+    @media (max-width:720px){
+      .site { padding:12px; }
+      .grid { grid-template-columns:1fr; }
+      .location-select { min-width:180px; }
+      .logo{width:46px;height:46px}
+      .card .media{height:160px}
+    }
+
+    
+    .card .media { border-bottom-left-radius:0; border-bottom-right-radius:0; }
+
+    .spacer { height:36px; }
+  </style>
+</head>
+<body>
+  <div class="site">
+  
+    <header class="nav" role="banner">
+      <div class="nav-left">
+        <div class="logo" aria-hidden>khanakhazana</div>
+
+        
+    </header>
+
+    
+    <h2 class="section-title">Restaurants</h2>
+
+   
+    <div class="grid" role="list">
+
+      
+      <article class="card" role="listitem" aria-label="LeanCrust Pizza">
+        <div class="media">
+          <img src="https://lh3.googleusercontent.com/tGHEi7UP9I4683UkgUYG7tXdHbi3LwEiRFmcUc6dcZICGpjDMz-QaxAVwG6Xg8oXPTULzaNlx0h2C85lpkCvm6WzZsQpm900q3DFJrqr=w512-rw" alt="Person eating pizza with pizza on table">
+          <div class="brand-badge" aria-hidden>LeanCrust</div>
+        </div>
+
+        <div class="content">
+          <div>
+            <h3>LeanCrust Pizza</h3>
+            <div class="subtitle">The Thin Crust Experts</div>
+          </div>
+
+          <div>
+            <div class="divider"></div>
+            <div class="offer"><span class="dot">✔</span> 30% Off + ZERO Extra Fees</div>
+          </div>
+        </div>
+      </article>
+
+      
+      <article class="card" role="listitem" aria-label="MOJO Pizza">
+        <div class="media">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgsiON7kbmJ1RHYjt0BW4Tz9SwNkRIHa-ArQ&s" alt="Pizza on table">
+          <div class="brand-badge" aria-hidden>MOJO</div>
+        </div>
+
+        <div class="content">
+          <div>
+            <h3>MOJO Pizza — 2X Toppings</h3>
+            <div class="subtitle">India's Highest Rated Pizza Delivery Chain</div>
+          </div>
+
+          <div>
+            <div class="divider"></div>
+            <div class="offer"><span class="dot">✔</span> 30% Off + ZERO Extra Fees</div>
+          </div>
+        </div>
+      </article>
+
+  
+      <article class="card" role="listitem" aria-label="Globo Ice Creams">
+        <div class="media">
+          <img src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/RX_THUMBNAIL/IMAGES/VENDOR/2024/5/28/67937888-968f-4e3f-ad83-310762c41d78_856796.JPG" alt="Ice cream tubs">
+          <div class="brand-badge" aria-hidden>globo</div>
+        </div>
+
+        <div class="content">
+          <div>
+            <h3>Globo Ice Creams</h3>
+            <div class="subtitle">Ice Creams of the World. Taste That Teleports You.</div>
+          </div>
+
+          <div>
+            <div class="divider"></div>
+            <div class="offer"><span class="dot">✔</span> 30% Off + ZERO Extra Fees</div>
+          </div>
+        </div>
+      </article>
+
+     
+      <article class="card" role="listitem" aria-label="Bhatti Chicken">
+        <div class="media">
+          <img src="https://static01.nyt.com/images/2019/07/24/dining/19apperex1/19apperex1-master768.jpg" alt="Grilled chicken wings">
+          <div class="brand-badge" aria-hidden>Bhatti</div>
+        </div>
+
+        <div class="content">
+          <div>
+            <h3>Bhatti Chicken</h3>
+            <div class="subtitle">Grilled in a Bhatti, Not Fried</div>
+          </div>
+
+          <div>
+            <div class="divider"></div>
+            <div class="offer"><span class="dot">✔</span> 30% Off + ZERO Extra Fees</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" role="listitem" aria-label="ZAZA Mughal Biryani">
+        <div class="media">
+          <img src="https://content.jdmagicbox.com/v2/comp/pune/p8/020pxx20.xx20.240521135221.z7p8/catalogue/zaza-mughal-biryani-hinjewadi-pune-biryani-take-away-joints-vdzl6bhmr2.jpg" alt="Biryani on plate">
+          <div class="brand-badge" aria-hidden>ZAZA</div>
+        </div>
+
+        <div class="content">
+          <div>
+            <h3>ZAZA Mughal Biryani</h3>
+            <div class="subtitle">India's Most Flavourful Biryani</div>
+          </div>
+
+          <div>
+            <div class="divider"></div>
+            <div class="offer"><span class="dot">✔</span> 30% Off + ZERO Extra Fees</div>
+          </div>
+        </div>
+      </article>
+
+   
+      <article class="card" role="listitem" aria-label="BOX8 - Desi Meals">
+        <div class="media">
+          <img src="https://content.jdmagicbox.com/comp/def_content_category/box8/136668172-1545564928962639-5637207615065103483-n-box8-995-p022i.jpg" alt="Desi meals">
+          <div class="brand-badge" aria-hidden>BOX8</div>
+        </div>
+
+        <div class="content">
+          <div>
+            <h3>BOX8 — Desi Meals</h3>
+            <div class="subtitle">India's Largest Desi Meals Brand</div>
+          </div>
+
+          <div>
+            <div class="divider"></div>
+            <div class="offer"><span class="dot">✔</span> 30% Off + ZERO Extra Fees</div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="spacer" aria-hidden></div>
+  </div>
+</body>
+</html>
